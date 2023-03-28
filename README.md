@@ -6,13 +6,13 @@
 
 <details>
   <summary>APP Preview (Desktop/PC)</summary>
-![](/web-preview-page.png)
+![web](/web-preview-page.png)
 </details>
 
 <br>
 
 <details>
   <summary>APP Preview (Mobile/PC)</summary>
-![](/mobile-preview-page.png)
+![mobile](/mobile-preview-page.png)
 </details>
 

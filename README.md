@@ -7,7 +7,7 @@
 <details>
   <summary>APP Preview (Desktop/PC)</summary>
   
- ![web](/web-preview-page.png)
+ ![web-preview](/web-preview-page.png)
 
 </details>
 
@@ -16,7 +16,7 @@
 <details>
   <summary>APP Preview (Mobile/PC)</summary>
   
- ![mobile](/mobile-preview-page.png)
+ ![mobile-preview](/mobile-preview-page.png)
 
 </details>
 

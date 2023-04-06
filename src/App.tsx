@@ -1,9 +1,12 @@
-import './App.css'
+import './index.css'
+import Menu from './components/menu/menu'
 
 function App() {
 
   return (
-    <div>Hola</div>
+    <>
+    <Menu />
+    </>
   )
 }
 

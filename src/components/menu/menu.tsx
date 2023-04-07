@@ -18,12 +18,13 @@ const MenuContenedor = styled.div<Styled>`
     diplay:flex;
     width:40px;
     height:${({height}) => height};
-    margin-top:4vh;
     max-height:85vh;
     background:#fff;
     min-height:360px;
     border-radius:25px;
-    position: relative;
+    position: absolute;
+    top:5%;
+    left:1%;
     transform:${({traslado}) => `translateX(${traslado})`};
     transition:transform ease 0.5s;
 

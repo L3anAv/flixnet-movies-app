@@ -5,3 +5,8 @@
     background:#e9e9eb;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+@font-face {
+    font-family:Manjari;
+    src: url('/public/fonts//Manjari-Bold.ttf')  format('truetype');
+  }

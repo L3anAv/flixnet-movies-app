@@ -9,6 +9,7 @@ const useObtenerMovie = (Route: string) => {
     })
 
     return query
+    
 }
 
 export default useObtenerMovie;

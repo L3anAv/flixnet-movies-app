@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import styled from 'styled-components';
-import useObtenerMovie from '../../hooks/useObtenerMovie';
+import styled from 'styled-components'
+import {useState, useEffect} from 'react'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import useObtenerMovie from '../../hooks/useObtenerMovie'
 import Ticket from '../../../public/assets/svg/coupon_fill.svg'
 import {API_DB_MOVIE_POPULARES, API_IMG} from "../../utils/apiHelpers"
 
@@ -21,6 +23,7 @@ const ImgSlider = styled.img`
     object-fit: cover;
     border-radius:30px;
 `
+
 const BotonInfo = styled.button`
     width:210px;
     position:absolute;
@@ -54,51 +57,58 @@ const SliderMarker = styled.p<{left: number, active: boolean}>`
     font-family:Manjari;
     margin-left:10px;
     position:absolute;
-    top:-40px;
+    top:-45px;
     left: ${props => props.left}px;
-    color: ${props => props.active ? "red" : "gray"};
+    color:${(props) => (props.active ? '#FDF0D5' : '#003049')};
 `
 
 const Slider = () => {
 
     const movies = useObtenerMovie(`${API_DB_MOVIE_POPULARES}`)
 
-    const [index, setIndex] = useState(0)
     const [moviesSlider, setMoviesSLider] = useState([])
+    const [currentSlider, setcurrentSlider] = useState(0)
     const[sliderActual, setSliderActual] = useState<{backdrop_path: string}>()
     
     useEffect(() => {
       if(movies.isSuccess){
         const postersMovies = movies.data.slice(0,5)
+        
         setMoviesSLider(postersMovies)
       }
     }, [movies.isSuccess])
     
     useEffect(() => {
         setTimeout(() => {
-            if(index < 4){
-                setIndex(index + 1)
+            if(currentSlider < 4){
+                setcurrentSlider(currentSlider + 1)
             }else{
-                setIndex(0)
+                setcurrentSlider(0)
             }
         }, 10000);
 
-        setSliderActual(moviesSlider[index])
+        setSliderActual(moviesSlider[currentSlider])
     })
 
-    if(movies.isLoading) return <div>Cargando..</div>
-    
+    if(movies.isLoading){
+        return (
+            <ContenedorSlider>
+                <Skeleton width={450} height={'45vh'} baseColor="#bcbcbc" borderRadius="30px" duration={2} />
+            </ContenedorSlider>
+        )
+    }
+
     if(movies.isSuccess){
     return (
         <ContenedorSlider>
             {<ImgSlider src={`${API_IMG}${sliderActual?.backdrop_path}`}/>}
             <BotonInfo><img src={Ticket}/>Mas Informacion</BotonInfo>
-            {moviesSlider.map((i, inx) => (
-                <SliderMarker key={inx} left={i * 20} active={inx === index}>.</SliderMarker>
-            ))}
+            {moviesSlider.map((movie, index) => (
+          <SliderMarker key={index} left={index*20} active={index === currentSlider}>.</SliderMarker>
+        ))}
         </ContenedorSlider>
     )}
-
+    
 }
 
 export default Slider;
